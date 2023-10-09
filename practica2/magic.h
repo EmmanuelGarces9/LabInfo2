@@ -4,6 +4,7 @@
 #include <cstdlib>
 #include <ctime>
 #include <iostream>
+
 using namespace std;
 
 //ejercicio 2
@@ -98,8 +99,9 @@ void Print_Conj_Matrices(int***, unsigned short);
 void Problema_16();
 
 
-int factorial(int n);
-string findNthLexicographicPermutation(int n);
+int factorial(int );
+string nth_permutation(int digits[], const int tam, int n);
+void problema18();
 
 
 

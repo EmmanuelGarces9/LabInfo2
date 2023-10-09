@@ -100,6 +100,10 @@ int main(){
         Problema_16();
         }
 
+        else if(START==18){
+            problema18();
+         }
+
         cout << "Que programa quiere revisar : ";
         cin >> START;
 

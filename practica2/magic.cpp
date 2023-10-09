@@ -590,14 +590,75 @@ void Problema_16(){
         f1 *= a;
     }
 
-    for (int b = 1; b <= n; b++) {  //calcula el factorial de n
+    for (int b = 1; b <= dim; b++) {  //calcula el factorial de n
         f2 *= b;
     }
 
     f2 *= f2;
     f1 /= f2;               //formula del coeficiente binomial de (2n, n)
 
-    cout << "Para una cuadricula de " << n << "x" << n << " cuadros hay : " << f1 << " caminos" << endl;
+    cout << "Para una cuadricula de " << dim << "x" << dim << " cuadros hay : " << f1 << " caminos" << endl;
 }
+
+
+
+//Problema 18
+
+int factorial(int n);
+string nth_permutation(int digits[], const int tam, int n);
+void problema18();
+
+// Función para calcular el factorial del numero que toma como parametro
+int factorial(int n) {
+    if (n == 0) return 1;
+
+    int result = 1;
+    for (int i = 1; i <= n; ++i) {
+        result *= i;
+    }
+    return result;
+}
+
+// Función para encontrar la enésima permutación lexicográfica
+string nth_permutation(int digits[], const int tam, int n) {
+    string permutation;
+
+    n -= 1;  // ya que los para sacar index's, siempre empiezan con 0
+    int available_digits[tam];  // Crear available_digits
+        // Llenar available_digits
+        for(int i = 0; i < tam; ++i) available_digits[i] = digits[i];
+
+        for(int i = tam - 1; i >= 0; --i) {
+            int total_permutations = factorial(i);  // Permutaciones posibles con los digitos restantes
+            int index = n / total_permutations;
+
+            int digit = available_digits[index];    //Obtiene el digito para agregar
+            permutation += to_string(digit);    // Agrega el digito a la permutacion
+
+            // "Eliminar" el dígito utilizado
+            // No se elimina realmente, solo se deja de tener ese valor disponible
+            for(int j = index; j < i; ++j) {
+                available_digits[j] = available_digits[j + 1];
+            }
+
+            n %= total_permutations;    // Se encuentra el numero de permutaciones disponibles que incluya los digitos anteriores agregados en la permutacion
+        }
+
+        return permutation;
+    }
+
+    void problema18() {
+        const int tam = 10;
+        int digits[10] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+        int n;
+        //n = 1000000;
+        cout << "Ingrese el numero de permutacion que desee obtener: ";
+        cin >> n;
+
+        string nth_permutation_str = nth_permutation(digits, tam, n);
+
+        cout << "La " << n << "-ésima permutación lexicográfica de los dígitos es: "
+            << nth_permutation_str << endl;
+    }
 
 
