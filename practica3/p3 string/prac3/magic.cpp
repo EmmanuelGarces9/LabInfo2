@@ -52,7 +52,7 @@ string binario_caracter (string& texto)
     auxiliar = texto.substr(0,semilla);
     for (int i = 0; i < repeticiones; i++){ //for principal
         int resultado=0;
-        for (int j=0; j<8; j++) // 0100 0001 65   64+1 = 65
+        for (int j=0; j<8; j++)
         {
             if (auxiliar[j]== '1')
                 resultado = resultado+vector [j];
